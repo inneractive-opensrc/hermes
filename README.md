@@ -1,4 +1,4 @@
-# hermes
+# HERMES
 
 *POC for Kafka stream demo*
 
