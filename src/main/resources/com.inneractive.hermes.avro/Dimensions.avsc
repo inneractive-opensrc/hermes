@@ -1,0 +1,17 @@
+{
+"namespace": "com.inneractive.hermes.model",
+      "type": "record",
+      "name": "Dimensions",
+      "doc": "Contains all the dimensions across all events",
+      "fields": [
+          {
+            "name": "eventType",
+            "type": {
+                "name":"EventType",
+                "type": "enum",
+                "doc": "Event type is used to ",
+                "symbols" : ["AD_REQUEST", "DEFAULT_AD", "IMPRESSION","CLICK", "NO_AD", "JOIN1", "JOIN2"]
+            }
+          }
+    ]
+}
