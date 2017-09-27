@@ -14,9 +14,11 @@ case class SAggEventAd(
   deviceOs: String, audience: Option[Seq[String]]
 ) extends SAggregationEvent
 
-class SAggEventNoAd(val eventType: EventType, val sessionId: String,
-  val deviceOs: String,audience: Option[Seq[String]] = None) extends SAggregationEvent
+class SAggEventNoAd(
+  val eventType: EventType, val sessionId: String,
+  val deviceOs: String, audience: Option[Seq[String]] = None
+) extends SAggregationEvent
 
-case class EventJoin1(sessionId : String, key1 : String, value1 : Double)
-case class EventJoin2(sessionId : String, key2 : String, value2 : Double)
+case class EventJoin1(sessionId: String, key1: String, value1: Double)
 
+case class EventJoin2(sessionId: String, key2: String, value2: Double)

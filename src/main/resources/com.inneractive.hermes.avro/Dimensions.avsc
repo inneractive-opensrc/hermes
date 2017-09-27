@@ -10,7 +10,8 @@
                 "name":"EventType",
                 "type": "enum",
                 "doc": "Event type is used to ",
-                "symbols" : ["AD_REQUEST", "DEFAULT_AD", "IMPRESSION","CLICK", "NO_AD", "JOIN1", "JOIN2"]
+                "symbols" : ["AD_REQUEST", "DEFAULT_AD", "IMPRESSION","CLICK", "NO_AD", "AD_SERVED", "DEFAULT_CLICK",
+                "DOWNLOAD", "FILTERED_AD", "FRAUDULENT_CLICK", "JOIN1", "JOIN2"]
             }
           }
     ]

@@ -8,7 +8,7 @@ package com.inneractive.hermes.model;
 /** Event type is used to  */
 @org.apache.avro.specific.AvroGenerated
 public enum EventType {
-  AD_REQUEST, DEFAULT_AD, IMPRESSION, CLICK, NO_AD, JOIN1, JOIN2  ;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"enum\",\"name\":\"EventType\",\"namespace\":\"com.inneractive.hermes.model\",\"doc\":\"Event type is used to \",\"symbols\":[\"AD_REQUEST\",\"DEFAULT_AD\",\"IMPRESSION\",\"CLICK\",\"NO_AD\",\"JOIN1\",\"JOIN2\"]}");
+  AD_REQUEST, DEFAULT_AD, IMPRESSION, CLICK, NO_AD, AD_SERVED, DEFAULT_CLICK, DOWNLOAD, FILTERED_AD, FRAUDULENT_CLICK, JOIN1, JOIN2  ;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"enum\",\"name\":\"EventType\",\"namespace\":\"com.inneractive.hermes.model\",\"doc\":\"Event type is used to \",\"symbols\":[\"AD_REQUEST\",\"DEFAULT_AD\",\"IMPRESSION\",\"CLICK\",\"NO_AD\",\"AD_SERVED\",\"DEFAULT_CLICK\",\"DOWNLOAD\",\"FILTERED_AD\",\"FRAUDULENT_CLICK\",\"JOIN1\",\"JOIN2\"]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 }

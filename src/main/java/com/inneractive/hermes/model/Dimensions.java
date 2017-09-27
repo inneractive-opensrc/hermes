@@ -5,17 +5,17 @@
  */
 package com.inneractive.hermes.model;
 
-import org.apache.avro.specific.SpecificData;
-import org.apache.avro.message.BinaryMessageEncoder;
 import org.apache.avro.message.BinaryMessageDecoder;
+import org.apache.avro.message.BinaryMessageEncoder;
 import org.apache.avro.message.SchemaStore;
+import org.apache.avro.specific.SpecificData;
 
 @SuppressWarnings("all")
 /** Contains all the dimensions across all events */
 @org.apache.avro.specific.AvroGenerated
 public class Dimensions extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 7419823717184152736L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Dimensions\",\"namespace\":\"com.inneractive.hermes.model\",\"doc\":\"Contains all the dimensions across all events\",\"fields\":[{\"name\":\"eventType\",\"type\":{\"type\":\"enum\",\"name\":\"EventType\",\"doc\":\"Event type is used to \",\"symbols\":[\"AD_REQUEST\",\"DEFAULT_AD\",\"IMPRESSION\",\"CLICK\",\"NO_AD\",\"JOIN1\",\"JOIN2\"]}}]}");
+  private static final long serialVersionUID = 2734828643272315863L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Dimensions\",\"namespace\":\"com.inneractive.hermes.model\",\"doc\":\"Contains all the dimensions across all events\",\"fields\":[{\"name\":\"eventType\",\"type\":{\"type\":\"enum\",\"name\":\"EventType\",\"doc\":\"Event type is used to \",\"symbols\":[\"AD_REQUEST\",\"DEFAULT_AD\",\"IMPRESSION\",\"CLICK\",\"NO_AD\",\"AD_SERVED\",\"DEFAULT_CLICK\",\"DOWNLOAD\",\"FILTERED_AD\",\"FRAUDULENT_CLICK\",\"JOIN1\",\"JOIN2\"]}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
