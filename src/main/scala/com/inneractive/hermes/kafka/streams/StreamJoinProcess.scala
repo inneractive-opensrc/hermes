@@ -58,12 +58,10 @@ object StreamJoinProcess extends App with Logging {
         JoinWindows.of(20000), serdeString, serdesEvent, getAvroEventSerdes[JoinEvent1]._2
       )
 
-    join1.to(serdeString, serdesEvent, "unifiedEvent")
-
     /**
       * Join AggregationEvent with join2Event
       */
-    val join2: KStream[String, JoinFullEvent] = inputStream.join(
+    val join2: KStream[String, JoinFullEvent] = join1.join(
       joinStream2, (fullEvent: JoinFullEvent, join2: JoinEvent2) => valueJoiner2(fullEvent, join2),
       JoinWindows.of(20000), serdeString, serdesEvent, getAvroEventSerdes[JoinEvent2]._2
     )
@@ -104,7 +102,7 @@ object StreamJoinProcess extends App with Logging {
   def valueJoiner2(joinFullEvent: JoinFullEvent, joinEvent: JoinEvent2) = {
     if (joinEvent != null) {
       joinFullEvent.setEventType(EventType.JOIN2)
-      joinFullEvent.setValue1(0.0)
+      joinFullEvent.setValue1(joinFullEvent.getValue1 + 98)
       joinFullEvent.setIaGross(0.0)
       joinFullEvent.setIaNet(0.0)
       joinFullEvent.setPublisherGross(0.0)
