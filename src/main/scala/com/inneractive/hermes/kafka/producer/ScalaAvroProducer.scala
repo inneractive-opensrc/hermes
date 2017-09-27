@@ -5,7 +5,6 @@ import com.inneractive.hermes.kafka.streams.HermesConfig.getConfigs
 import com.inneractive.hermes.kafka.streams.HermesConfig.setSchemaUrl
 import com.inneractive.hermes.model.EventType
 import com.inneractive.hermes.model.JoinEvent1
-import com.inneractive.hermes.model.JoinEvent2
 import com.inneractive.hermes.model.JoinFullEvent
 import grizzled.slf4j.Logging
 import org.apache.kafka.clients.producer.KafkaProducer
@@ -19,6 +18,8 @@ import scala.util.Try
 object ScalaAvroProducer extends App with Logging {
   val countries = List("US","FR","IL","GE")
 
+  val partial = (args.length == 2) && args(1) == "partial"
+
   val numRecordToSend = Try {
     args(0).toInt
   } getOrElse (throw new IllegalArgumentException("NumRecord not defined"))
@@ -29,8 +30,8 @@ object ScalaAvroProducer extends App with Logging {
     val c = getConfigs
     c.putAll(setSchemaUrl())
     val producer = new KafkaProducer[String, JoinFullEvent](c)
-    val producerJoin1 = new KafkaProducer[String, JoinEvent1](c)
-    val producerJoin2 = new KafkaProducer[String, JoinEvent2](c)
+
+    implicit val producerJoin1 = new KafkaProducer[String, JoinEvent1](c)
 
     info("Start Sending now")
     val maxValues = EventType.values.length
@@ -38,22 +39,23 @@ object ScalaAvroProducer extends App with Logging {
       val aggregationEvent = makeAggregationEvent(maxValues, i)
       val record = new ProducerRecord[String, JoinFullEvent]("joinstream2", i.toString, aggregationEvent)
 
-      val e1 = JoinEvent1.newBuilder().setEventType(EventType.JOIN1).setSessionId(i.toString).setDimension1("dim1").setValue1(1)
-      val e2 = JoinEvent2.newBuilder().setEventType(EventType.JOIN2).setSessionId(i.toString).setDimension2("dim2").setValue2(2)
-
-      val r1 = new ProducerRecord[String, JoinEvent1]("join1", i.toString, e1.build())
-      val r2 = new ProducerRecord[String, JoinEvent2]("join2", i.toString, e2.build())
+      if (partial) {
+        if (i % 2 == 0) sendJoinEvent(i)
+      }
+      else sendJoinEvent(i)
 
       producer.send(record)
-
-      producerJoin1.send(r1)
-      producerJoin2.send(r2)
     }
+  }
+
+  def sendJoinEvent(i : Int)(implicit producer : KafkaProducer[String,JoinEvent1]) = {
+    val e1 = JoinEvent1.newBuilder().setEventType(EventType.JOIN1).setSessionId(i.toString).setDimension1("dim1").setValue1(1)
+    val r1 = new ProducerRecord[String, JoinEvent1]("join1", i.toString, e1.build())
+    producer.send(r1)
   }
 
   def makeAggregationEvent(maxValue: Int, i: Int) = {
     import collection.JavaConverters._
-    val eventType = EventType.values()(Random.nextInt(maxValue))
     val randomInt = Random.nextInt(4)
 
     JoinFullEvent.newBuilder
@@ -64,7 +66,7 @@ object ScalaAvroProducer extends App with Logging {
       .setCountryCode(countries(randomInt))
       .setIABCategories(List("AB1","AB2").asJava)
       .setOccurrences(1)
-      .setEventType(eventType)
+      .setEventType(EventType.AD_REQUEST)
       .setSessionId(i.toString)
       .setPublisherGross(1)
       .setIaGross(1)
