@@ -7,6 +7,6 @@ import org.apache.kafka.streams.KeyValue
   */
 object KeyValueImplicits {
 
-  implicit def Tuple2ToKeyValue[K, V](tuple: (K, V)): KeyValue[K, V] = new KeyValue(tuple._1, tuple._2)
+  implicit def Tuple2ToKeyValue[K, V](tuple: (K, V)): KeyValue[K, V] = KeyValue.pair(tuple._1, tuple._2)
 
 }
