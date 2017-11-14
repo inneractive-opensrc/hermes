@@ -24,7 +24,6 @@
     <orderEntry type="library" name="Maven: io.kamon:kamon-statsd_2.11:0.6.0" level="project" />
     <orderEntry type="library" name="Maven: com.github.pureconfig:pureconfig_2.11:0.7.2" level="project" />
     <orderEntry type="library" name="Maven: com.chuusai:shapeless_2.11:2.3.2" level="project" />
-    <orderEntry type="library" name="Maven: org.typelevel:macro-compat_2.11:1.1.1" level="project" />
     <orderEntry type="library" name="Maven: io.confluent:kafka-avro-serializer:3.3.0" level="project" />
     <orderEntry type="library" name="Maven: io.confluent:common-config:3.3.0" level="project" />
     <orderEntry type="library" name="Maven: io.confluent:common-utils:3.3.0" level="project" />
@@ -41,6 +40,16 @@
     <orderEntry type="library" name="Maven: org.xerial.snappy:snappy-java:1.1.2.6" level="project" />
     <orderEntry type="library" name="Maven: io.confluent:kafka-schema-registry:3.3.0" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish.jersey.ext:jersey-bean-validation:2.25" level="project" />
+    <orderEntry type="library" name="Maven: org.glassfish.hk2.external:javax.inject:2.5.0-b30" level="project" />
+    <orderEntry type="library" name="Maven: org.glassfish.jersey.core:jersey-common:2.25" level="project" />
+    <orderEntry type="library" name="Maven: javax.annotation:javax.annotation-api:1.2" level="project" />
+    <orderEntry type="library" name="Maven: org.glassfish.jersey.bundles.repackaged:jersey-guava:2.25" level="project" />
+    <orderEntry type="library" name="Maven: org.glassfish.hk2:hk2-api:2.5.0-b30" level="project" />
+    <orderEntry type="library" name="Maven: org.glassfish.hk2:hk2-utils:2.5.0-b30" level="project" />
+    <orderEntry type="library" name="Maven: org.glassfish.hk2.external:aopalliance-repackaged:2.5.0-b30" level="project" />
+    <orderEntry type="library" name="Maven: org.glassfish.hk2:hk2-locator:2.5.0-b30" level="project" />
+    <orderEntry type="library" name="Maven: org.javassist:javassist:3.20.0-GA" level="project" />
+    <orderEntry type="library" name="Maven: org.glassfish.hk2:osgi-resource-locator:1.0.1" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish.jersey.core:jersey-server:2.25" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish.jersey.media:jersey-media-jaxb:2.25" level="project" />
     <orderEntry type="library" name="Maven: javax.validation:validation-api:1.1.0.Final" level="project" />
@@ -49,6 +58,7 @@
     <orderEntry type="library" name="Maven: com.fasterxml:classmate:1.0.0" level="project" />
     <orderEntry type="library" name="Maven: javax.el:javax.el-api:2.2.4" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish.web:javax.el:2.2.4" level="project" />
+    <orderEntry type="library" name="Maven: javax.ws.rs:javax.ws.rs-api:2.0.1" level="project" />
     <orderEntry type="library" name="Maven: io.confluent:rest-utils:3.3.0" level="project" />
     <orderEntry type="library" name="Maven: io.confluent:common-metrics:3.3.0" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish.jersey.containers:jersey-container-servlet:2.25" level="project" />
@@ -106,11 +116,11 @@
     <orderEntry type="library" name="Maven: org.apache.velocity:velocity:1.7" level="project" />
     <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.1" level="project" />
     <orderEntry type="library" name="Maven: joda-time:joda-time:2.7" level="project" />
-    <orderEntry type="library" name="Maven: org.scala-lang:scala-library:2.11.8" level="project" />
+    <orderEntry type="library" name="Maven: org.scala-lang:scala-library:2.11.12" level="project" />
     <orderEntry type="library" name="Maven: com.typesafe:config:1.3.1" level="project" />
-    <orderEntry type="library" name="Maven: com.ovoenergy:kafka-serialization-avro4s_2.11:0.1.21" level="project" />
-    <orderEntry type="library" name="Maven: com.ovoenergy:kafka-serialization-core_2.11:0.1.21" level="project" />
-    <orderEntry type="library" name="Maven: com.ovoenergy:kafka-serialization-avro_2.11:0.1.21" level="project" />
+    <orderEntry type="library" name="Maven: com.ovoenergy:kafka-serialization-avro4s_2.11:0.1.22" level="project" />
+    <orderEntry type="library" name="Maven: com.ovoenergy:kafka-serialization-core_2.11:0.1.22" level="project" />
+    <orderEntry type="library" name="Maven: com.ovoenergy:kafka-serialization-avro_2.11:0.1.22" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish.jersey.core:jersey-client:2.25.1" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish.jersey.connectors:jersey-netty-connector:2.25.1" level="project" />
     <orderEntry type="library" name="Maven: org.glassfish.jersey.media:jersey-media-json-processing:2.25.1" level="project" />
@@ -118,17 +128,6 @@
     <orderEntry type="library" name="Maven: org.glassfish:jsonp-jaxrs:1.0" level="project" />
     <orderEntry type="library" name="Maven: com.sksamuel.avro4s:avro4s-core_2.11:1.6.3" level="project" />
     <orderEntry type="library" name="Maven: com.sksamuel.avro4s:avro4s-macros_2.11:1.6.3" level="project" />
-    <orderEntry type="library" name="Maven: org.glassfish.jersey.core:jersey-common:2.25.1" level="project" />
-    <orderEntry type="library" name="Maven: javax.ws.rs:javax.ws.rs-api:2.0.1" level="project" />
-    <orderEntry type="library" name="Maven: javax.annotation:javax.annotation-api:1.2" level="project" />
-    <orderEntry type="library" name="Maven: org.glassfish.jersey.bundles.repackaged:jersey-guava:2.25.1" level="project" />
-    <orderEntry type="library" name="Maven: org.glassfish.hk2:hk2-api:2.5.0-b32" level="project" />
-    <orderEntry type="library" name="Maven: org.glassfish.hk2:hk2-utils:2.5.0-b32" level="project" />
-    <orderEntry type="library" name="Maven: org.glassfish.hk2.external:aopalliance-repackaged:2.5.0-b32" level="project" />
-    <orderEntry type="library" name="Maven: org.glassfish.hk2.external:javax.inject:2.5.0-b32" level="project" />
-    <orderEntry type="library" name="Maven: org.glassfish.hk2:hk2-locator:2.5.0-b32" level="project" />
-    <orderEntry type="library" name="Maven: org.javassist:javassist:3.20.0-GA" level="project" />
-    <orderEntry type="library" name="Maven: org.glassfish.hk2:osgi-resource-locator:1.0.1" level="project" />
     <orderEntry type="library" name="Maven: com.inneractive:sentinel_2.11:1.2" level="project" />
     <orderEntry type="library" name="Maven: net.databinder.dispatch:dispatch-json4s-native_2.11:0.11.3" level="project" />
     <orderEntry type="library" name="Maven: net.databinder.dispatch:dispatch-core_2.11:0.11.3" level="project" />
@@ -178,5 +177,64 @@
     <orderEntry type="library" name="Maven: org.scala-lang.modules:scala-xml_2.11:1.0.5" level="project" />
     <orderEntry type="library" name="Maven: org.clapper:grizzled-slf4j_2.11:1.3.1" level="project" />
     <orderEntry type="library" name="Maven: tech.allegro.schema.json2avro:converter:0.2.5" level="project" />
+    <orderEntry type="library" name="Maven: com.github.finagle:finch-core_2.11:0.16.0-M4" level="project" />
+    <orderEntry type="library" name="Maven: org.typelevel:cats-core_2.11:1.0.0-RC1" level="project" />
+    <orderEntry type="library" name="Maven: org.typelevel:cats-macros_2.11:1.0.0-RC1" level="project" />
+    <orderEntry type="library" name="Maven: org.typelevel:cats-kernel_2.11:1.0.0-RC1" level="project" />
+    <orderEntry type="library" name="Maven: org.typelevel:machinist_2.11:0.6.2" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:finagle-http_2.11:17.10.0" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:finagle-base-http_2.11:17.10.0" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:finagle-core_2.11:17.10.0" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:finagle-init_2.11:17.10.0" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:util-hashing_2.11:17.10.0" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:util-lint_2.11:17.10.0" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:util-registry_2.11:17.10.0" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:util-security_2.11:17.10.0" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:util-tunable_2.11:17.10.0" level="project" />
+    <orderEntry type="library" name="Maven: com.github.ben-manes.caffeine:caffeine:2.3.4" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.findbugs:jsr305:2.0.1" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:finagle-netty3_2.11:17.10.0" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:finagle-netty3-http_2.11:17.10.0" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:util-app_2.11:17.10.0" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:util-jvm_2.11:17.10.0" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:util-stats_2.11:17.10.0" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:finagle-netty4-http_2.11:17.10.0" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:finagle-netty4_2.11:17.10.0" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-codec-http:4.1.16.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-codec:4.1.16.Final" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:finagle-http2_2.11:17.10.0" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-codec-http2:4.1.16.Final" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:util-cache_2.11:17.10.0" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-handler:4.1.16.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-buffer:4.1.16.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-transport:4.1.16.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-resolver:4.1.16.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-transport-native-epoll:linux-x86_64:4.1.16.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-common:4.1.16.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-transport-native-unix-common:4.1.16.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-handler-proxy:4.1.16.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-codec-socks:4.1.16.Final" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:finagle-toggle_2.11:17.10.0" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.module:jackson-module-scala_2.11:2.8.4" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.module:jackson-module-paranamer:2.8.4" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:util-codec_2.11:17.10.0" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:util-collection_2.11:17.10.0" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:util-logging_2.11:17.10.0" level="project" />
+    <orderEntry type="library" name="Maven: io.catbird:catbird-util_2.11:0.20.0" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:util-core_2.11:17.10.0" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:util-function_2.11:17.10.0" level="project" />
+    <orderEntry type="library" name="Maven: com.github.finagle:finch-circe_2.11:0.16.0-M4" level="project" />
+    <orderEntry type="library" name="Maven: com.github.finagle:finch-iteratee_2.11:0.16.0-M4" level="project" />
+    <orderEntry type="library" name="Maven: io.iteratee:iteratee-core_2.11:0.15.0" level="project" />
+    <orderEntry type="library" name="Maven: io.iteratee:iteratee-twitter_2.11:0.15.0" level="project" />
+    <orderEntry type="library" name="Maven: io.iteratee:iteratee-files_2.11:0.15.0" level="project" />
+    <orderEntry type="library" name="Maven: io.circe:circe-core_2.11:0.9.0-M2" level="project" />
+    <orderEntry type="library" name="Maven: io.circe:circe-numbers_2.11:0.9.0-M2" level="project" />
+    <orderEntry type="library" name="Maven: io.circe:circe-iteratee_2.11:0.9.0-M3" level="project" />
+    <orderEntry type="library" name="Maven: io.circe:circe-jawn_2.11:0.9.0-M2" level="project" />
+    <orderEntry type="library" name="Maven: org.spire-math:jawn-parser_2.11:0.11.0" level="project" />
+    <orderEntry type="library" name="Maven: io.circe:circe-jackson28_2.11:0.9.0-M2" level="project" />
+    <orderEntry type="library" name="Maven: io.circe:circe-generic_2.11:0.9.0-M2" level="project" />
+    <orderEntry type="library" name="Maven: org.typelevel:macro-compat_2.11:1.1.1" level="project" />
   </component>
 </module>

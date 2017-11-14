@@ -25,13 +25,14 @@ import pureconfig.loadConfig
   * Created by Richard Grossman on 2017/06/21.
   */
 case class EndpointURL(brokers : String, schema : String, zookeeper : String)
-case class Topics(input : String, output: String)
+case class Topics(input : String, output: String, aggregation : String)
+case class Streams(punctuate : Long, threshold : Double, apiendpointhost : String, apiendpointport : Int)
 case class HermesProducerConfig(ack : Int)
 case class KafkaConsumerConfig(readfrom : String, groupid : String,
   autocomit: String, autocomitinterval : String, sessiontimeout : String)
 
 case class HermesConfig(urls : EndpointURL, topics : Topics,
-                        producerconf : HermesProducerConfig, consumerconf : KafkaConsumerConfig)
+                        producerconf : HermesProducerConfig, consumerconf : KafkaConsumerConfig, streams : Streams)
 
 
 object HermesConfig {
@@ -57,6 +58,10 @@ object HermesConfig {
     // Records should be flushed every 10 seconds. This is less than the default
     // in order to keep this example interactive.
     streamsConfiguration.put(StreamsConfig.COMMIT_INTERVAL_MS_CONFIG, "10000")
+
+    if (! c.streams.apiendpointhost.isEmpty) {
+      streamsConfiguration.put(StreamsConfig.APPLICATION_SERVER_CONFIG, s"${c.streams.apiendpointhost}:${c.streams.apiendpointport}")
+    }
 
     streamsConfiguration
 
