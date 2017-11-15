@@ -124,11 +124,11 @@
       <artifactId>kafka-serialization-avro4s_2.11</artifactId>
       <version>LATEST</version>
     </dependency>
-    <dependency>
-      <groupId>com.github.jcustenborder.kafka.connect</groupId>
-      <artifactId>kafka-connect-statsd</artifactId>
-      <version>0.1-SNAPSHOT</version>
-    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>com.github.jcustenborder.kafka.connect</groupId>-->
+      <!--<artifactId>kafka-connect-statsd</artifactId>-->
+      <!--<version>0.1-SNAPSHOT</version>-->
+    <!--</dependency>-->
     <dependency>
       <groupId>org.scalactic</groupId>
       <artifactId>scalactic_2.11</artifactId>
