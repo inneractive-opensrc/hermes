@@ -1,6 +1,6 @@
 package com.inneractive.hermes.kafka.streams
 
-import com.inneractive.hermes.kafka.anomalies.RealTimeAnomalyDetector.parseCli
+import com.inneractive.CliStarter
 import com.inneractive.hermes.kafka.streams.HermesConfig.getAvroEventSerdes
 import com.inneractive.hermes.kafka.streams.HermesConfig.getConfigs
 import com.inneractive.hermes.kafka.streams.HermesConfig.getGenericSerdes
@@ -15,7 +15,7 @@ import org.apache.kafka.streams.kstream.KStreamBuilder
 /**
   * Created by Richard Grossman on 2017/09/24.
   */
-object JsonConverterStreamProcess extends App with Logging {
+object JsonConverterStreamProcess extends App with Logging with CliStarter {
   val params = parseCli(args)
   val stream = HermesConfig().fold(_.head.description, implicit c => streamProcess)
 

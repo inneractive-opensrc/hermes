@@ -2,7 +2,7 @@ package com.inneractive.hermes.kafka.streams
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.node.ObjectNode
-import com.inneractive.hermes.kafka.anomalies.RealTimeAnomalyDetector.parseCli
+import com.inneractive.CliStarter
 import com.inneractive.hermes.kafka.services.CreativeIdService
 import com.inneractive.hermes.kafka.streams.HermesConfig.getConfigs
 import com.inneractive.hermes.model.JsonDeserializerNoException
@@ -21,7 +21,7 @@ import org.apache.kafka.streams.state.Stores
 /**
   * Created by Richard Grossman on 2017/11/08.
   */
-object CardinalityFilterProcess extends App with Logging {
+object CardinalityFilterProcess extends App with Logging with CliStarter {
 
   val params = parseCli(args)
   val stream = HermesConfig().fold(_.head.description, implicit c => streamProcess)

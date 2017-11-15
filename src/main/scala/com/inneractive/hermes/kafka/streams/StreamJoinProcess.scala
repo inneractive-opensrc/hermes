@@ -1,6 +1,6 @@
 package com.inneractive.hermes.kafka.streams
 
-import com.inneractive.hermes.kafka.anomalies.RealTimeAnomalyDetector.parseCli
+import com.inneractive.CliStarter
 import com.inneractive.hermes.kafka.streams.HermesConfig._
 import com.inneractive.hermes.model.EventType
 import com.inneractive.hermes.model.JoinEvent1
@@ -13,7 +13,7 @@ import org.apache.kafka.streams.kstream.KStream
 import org.apache.kafka.streams.kstream.KStreamBuilder
 
 
-object StreamJoinProcess extends App with Logging {
+object StreamJoinProcess extends App with Logging with CliStarter {
 
   val params = parseCli(args)
   val stream = HermesConfig().fold(_.head.description, implicit c => streamProcess)

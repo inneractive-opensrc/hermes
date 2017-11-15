@@ -1,7 +1,7 @@
 package com.inneractive.hermes.kafka.streams
 
 import com.fasterxml.jackson.databind.JsonNode
-import com.inneractive.hermes.kafka.anomalies.RealTimeAnomalyDetector.parseCli
+import com.inneractive.CliStarter
 import com.inneractive.hermes.kafka.streams.HermesConfig.getConfigs
 import com.inneractive.hermes.model.JsonDeserializerNoException
 import com.inneractive.hermes.model.ValueHolderDeserializer
@@ -23,7 +23,7 @@ import org.apache.kafka.streams.kstream.TimeWindows
 /**
   * Created by Richard Grossman on 2017/10/10.
   */
-object AggregationProcess extends App with Logging {
+object AggregationProcess extends App with Logging with CliStarter {
 
   val aggregationKeys = List(
     Vector("eventType", "publisherId", "contentId"),

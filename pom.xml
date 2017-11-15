@@ -125,21 +125,6 @@
       <version>LATEST</version>
     </dependency>
     <dependency>
-      <groupId>com.inneractive</groupId>
-      <artifactId>sentinel_2.11</artifactId>
-      <version>1.2</version>
-      <exclusions>
-        <exclusion>
-          <groupId>io.kamon</groupId>
-          <artifactId>kamon-datadog_2.11</artifactId>
-        </exclusion>
-        <exclusion>
-          <artifactId>logback-classic</artifactId>
-          <groupId>ch.qos.logback</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
       <groupId>com.github.jcustenborder.kafka.connect</groupId>
       <artifactId>kafka-connect-statsd</artifactId>
       <version>0.1-SNAPSHOT</version>
@@ -168,17 +153,22 @@
     <dependency>
       <groupId>com.github.finagle</groupId>
       <artifactId>finch-core_2.11</artifactId>
-      <version>0.16.0-M4</version>
+      <version>0.16.0-RC1</version>
     </dependency>
     <dependency>
       <groupId>com.github.finagle</groupId>
       <artifactId>finch-circe_2.11</artifactId>
-      <version>0.16.0-M4</version>
+      <version>0.16.0-RC1</version>
     </dependency>
     <dependency>
       <groupId>io.circe</groupId>
       <artifactId>circe-generic_2.11</artifactId>
       <version>0.9.0-M2</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.scopt</groupId>
+      <artifactId>scopt_2.11</artifactId>
+      <version>3.5.0</version>
     </dependency>
   </dependencies>
 
