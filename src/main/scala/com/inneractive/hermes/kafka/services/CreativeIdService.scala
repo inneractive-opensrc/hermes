@@ -1,6 +1,6 @@
 package com.inneractive.hermes.kafka.services
 
-import io.finch._
+//import io.finch._
 import org.apache.kafka.streams.KafkaStreams
 
 
@@ -17,9 +17,9 @@ class CreativeIdService(stream : KafkaStreams, port : Int) {
 //    implicit val encoder: Encoder[CreativeResult] = deriveEncoder[CreativeResult]
 //  }
 
-  def test: Endpoint[String] = get("creativeId" :: path[String]) { creativeId :String =>
-    Ok(s"Test ${creativeId}")
-  }
+//  def test: Endpoint[String] = get("creativeId" :: path[String]) { creativeId :String =>
+//    Ok(s"Test ${creativeId}")
+//  }
 
 
   //  import CreativeResult._

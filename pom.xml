@@ -33,7 +33,7 @@
     <java.version>1.8</java.version>
     <kafka.version>0.11.0.0-cp1</kafka.version>
     <kafka.scala.version>2.11</kafka.scala.version>
-    <scala.version>${kafka.scala.version}.12</scala.version>
+    <scala.version>${kafka.scala.version}.8</scala.version>
     <confluent.version>3.3.0</confluent.version>
     <scalatest.version>2.2.6</scalatest.version>
     <avro.version>1.8.2</avro.version>
@@ -122,7 +122,7 @@
     <dependency>
       <groupId>com.ovoenergy</groupId>
       <artifactId>kafka-serialization-avro4s_2.11</artifactId>
-      <version>LATEST</version>
+      <version>0.1.24</version>
     </dependency>
     <!--<dependency>-->
       <!--<groupId>com.github.jcustenborder.kafka.connect</groupId>-->
@@ -151,24 +151,19 @@
       <version>0.2.5</version>
     </dependency>
     <dependency>
-      <groupId>com.github.finagle</groupId>
-      <artifactId>finch-core_2.11</artifactId>
-      <version>0.16.0-RC1</version>
-    </dependency>
-    <dependency>
-      <groupId>com.github.finagle</groupId>
-      <artifactId>finch-circe_2.11</artifactId>
-      <version>0.16.0-RC1</version>
-    </dependency>
-    <dependency>
-      <groupId>io.circe</groupId>
-      <artifactId>circe-generic_2.11</artifactId>
-      <version>0.9.0-M2</version>
-    </dependency>
-    <dependency>
       <groupId>com.github.scopt</groupId>
       <artifactId>scopt_2.11</artifactId>
       <version>3.5.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.yahoo.egads</groupId>
+      <artifactId>egads</artifactId>
+      <version>0.3.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.nscala-time</groupId>
+      <artifactId>nscala-time_2.11</artifactId>
+      <version>2.12.0</version>
     </dependency>
   </dependencies>
 

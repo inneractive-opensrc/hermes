@@ -29,7 +29,7 @@ case class Topics(input : String, output: String, aggregation : String)
 case class Streams(punctuate : Long, threshold : Double, apiendpointhost : String, apiendpointport : Int)
 case class HermesProducerConfig(ack : Int)
 case class KafkaConsumerConfig(readfrom : String, groupid : String,
-  autocomit: String, autocomitinterval : String, sessiontimeout : String)
+  autocomit: String, autocomitinterval : String, sessiontimeout : String, maxpollrequest : String)
 
 case class HermesConfig(urls : EndpointURL, topics : Topics,
                         producerconf : HermesProducerConfig, consumerconf : KafkaConsumerConfig, streams : Streams)
@@ -67,13 +67,20 @@ object HermesConfig {
 
   }
 
+  def getStreamsConfig(implicit c: HermesConfig): Properties = {
+    val config = getBaseConfig
+    config.put("session.timeout.ms", c.consumerconf.sessiontimeout)
+    config.put("max.poll.records", c.consumerconf.maxpollrequest)
+     config
+  }
+
   def getConsumerConfig(implicit c: HermesConfig): Properties = {
     val config = getBaseConfig
     config.put("group.id", c.consumerconf.groupid)
     config.put("enable.auto.commit", c.consumerconf.autocomit)
     config.put("auto.commit.interval.ms", c.consumerconf.autocomitinterval)
     config.put("session.timeout.ms", c.consumerconf.sessiontimeout)
-
+    config.put("max.poll.records", c.consumerconf.maxpollrequest)
     config
   }
 

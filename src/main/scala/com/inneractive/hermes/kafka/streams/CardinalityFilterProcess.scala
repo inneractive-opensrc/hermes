@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.node.ObjectNode
 import com.inneractive.CliStarter
 import com.inneractive.hermes.kafka.services.CreativeIdService
-import com.inneractive.hermes.kafka.streams.HermesConfig.getConfigs
+import com.inneractive.hermes.kafka.streams.HermesConfig.getStreamsConfig
 import com.inneractive.hermes.model.JsonDeserializerNoException
 import grizzled.slf4j.Logging
 import org.apache.kafka.common.serialization.Serdes
@@ -56,7 +56,7 @@ object CardinalityFilterProcess extends App with Logging with CliStarter {
     val correct_stream = inputStream.transform(new CardinalityTransformerSupplier, "cardinalityStore")
     correct_stream.to(Serdes.String, jsonSerdes, "CORRECT_EVENTS")
 
-    val streams = new KafkaStreams(builder, getConfigs)
+    val streams = new KafkaStreams(builder, getStreamsConfig)
 
     params.foreach {
       p =>
