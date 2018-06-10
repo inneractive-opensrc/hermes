@@ -1,24 +1,18 @@
 package com.inneractive.hermes.kafka.streams
 
+import java.util.concurrent.TimeUnit
+
 import com.fasterxml.jackson.databind.JsonNode
 import com.inneractive.CliStarter
 import com.inneractive.hermes.kafka.streams.HermesConfig.getConfigs
-import com.inneractive.hermes.model.JsonDeserializerNoException
-import com.inneractive.hermes.model.ValueHolderDeserializer
-import com.inneractive.hermes.model.ValueHolderSerializer
+import com.inneractive.hermes.model.{JsonDeserializerNoException, ValueHolderDeserializer, ValueHolderSerializer}
 import com.inneractive.hermes.utils.WindowedSerde
 import com.sksamuel.avro4s.ValuesHolder
 import grizzled.slf4j.Logging
-import java.util.concurrent.TimeUnit
 import org.apache.kafka.common.serialization.Serdes
 import org.apache.kafka.connect.json.JsonSerializer
-import org.apache.kafka.streams.KafkaStreams
-import org.apache.kafka.streams.KeyValue
-import org.apache.kafka.streams.StreamsConfig
-import org.apache.kafka.streams.kstream.KStream
-import org.apache.kafka.streams.kstream.KStreamBuilder
-import org.apache.kafka.streams.kstream.Reducer
-import org.apache.kafka.streams.kstream.TimeWindows
+import org.apache.kafka.streams.{KafkaStreams, KeyValue, StreamsConfig}
+import org.apache.kafka.streams.kstream.{KStream, KStreamBuilder, Reducer, TimeWindows}
 
 /**
   * Created by Richard Grossman on 2017/10/10.
@@ -62,7 +56,7 @@ object AggregationProcess extends App with Logging with CliStarter {
     val inputStream: KStream[String, JsonNode] = builder.stream[String, JsonNode](
       Serdes.String,
       jsonSerdes,
-      "jsontopic"
+      "AGGREGATION_EVENT_JSON"
     )
 
     val keyedStream: KStream[String, ValuesHolder] = inputStream

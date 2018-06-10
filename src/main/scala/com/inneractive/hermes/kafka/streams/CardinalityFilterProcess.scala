@@ -9,14 +9,12 @@ import com.inneractive.hermes.model.JsonDeserializerNoException
 import grizzled.slf4j.Logging
 import org.apache.kafka.common.serialization.Serdes
 import org.apache.kafka.connect.json.JsonSerializer
-import org.apache.kafka.streams.KafkaStreams
-import org.apache.kafka.streams.KeyValue
-import org.apache.kafka.streams.kstream.KStreamBuilder
-import org.apache.kafka.streams.kstream.Transformer
-import org.apache.kafka.streams.kstream.TransformerSupplier
+import org.apache.kafka.streams.{KafkaStreams, KeyValue}
+import org.apache.kafka.streams.kstream.{KStreamBuilder, Transformer, TransformerSupplier}
 import org.apache.kafka.streams.processor.ProcessorContext
-import org.apache.kafka.streams.state.KeyValueStore
-import org.apache.kafka.streams.state.Stores
+import org.apache.kafka.streams.state.{KeyValueStore, Stores}
+
+import scala.util.Try
 
 /**
   * Created by Richard Grossman on 2017/11/08.
@@ -87,6 +85,8 @@ import com.inneractive.hermes.kafka.streams.KeyValueImplicits._
 class CardinalityTransformer(implicit config : HermesConfig) extends Transformer[String, JsonNode, KeyValue[String, JsonNode]] with Logging {
   private var creativeIdStore: KeyValueStore[String, Double] = _
   private var totalEarned    : Double                        = 0.0
+  private var totalEntries : Int = 0
+  private var totalFilter : Int = 0
   private val threshold : Double = config.streams.threshold
 
   override def init(context: ProcessorContext) = {
@@ -100,45 +100,56 @@ class CardinalityTransformer(implicit config : HermesConfig) extends Transformer
     totalEarned = 0
     while (iterator.hasNext) {
       totalEarned = totalEarned + iterator.next().value
+      totalEntries = totalEntries + 1
     }
 
     logger.info(s"Total Earned : $totalEarned")
+
+    creativeIdStore.flush()
     null
   }
 
-  def removeCreativeId(creativeId: String, json: JsonNode) = {
+  private def removeCreativeId(creativeId: String, json: JsonNode) = {
     logger.debug(s"${creativeId} has been removed from event")
     val jsonObject = json.asInstanceOf[ObjectNode]
+    totalFilter = totalFilter + 1
     jsonObject.put("creativeId", "")
     jsonObject
   }
 
   override def transform(key: String, value: JsonNode) = {
-    val creativeId = value.get("creativeId").asText()
-    val price = value.get("publisherGross").asDouble(0.0)
+    val tryCorrect = Try {
+      val creativeId = value.get("creativeId").asText()
+      val price = value.get("publisherGross").asDouble(0.0)
 
-    val correctNode = if (creativeId.isEmpty) value else if (price > 0) {
-      val currentValue = creativeIdStore.get(creativeId) + price
-      creativeIdStore.put(creativeId, currentValue)
+      val correctNode = if (creativeId.isEmpty) value else if (price > 0) {
+        val currentValue = creativeIdStore.get(creativeId) + price
+        creativeIdStore.put(creativeId, currentValue)
 
-      if (totalEarned > 0) {
-        val part = currentValue / totalEarned
-        if (part < threshold) {
-          logger.debug(s"CREATIVE_ID removed ==> $creativeId is $currentValue / $totalEarned = $part")
-          removeCreativeId(creativeId, value)
-        } else {
-          logger.info(s"CREATIVE_ID OK ==> $creativeId is $currentValue / $totalEarned = $part")
-          value
-        }
-      } else value
-    } else {
-      removeCreativeId(creativeId, value)
+        if (totalEarned > 0) {
+          val part = currentValue / totalEarned
+          if (part < threshold) {
+            logger.debug(s"CREATIVE_ID removed ==> $creativeId is $currentValue / $totalEarned = $part")
+            removeCreativeId(creativeId, value)
+          } else {
+            logger.info(s"CREATIVE_ID OK ==> $creativeId is $currentValue / $totalEarned = $part")
+            value
+          }
+        } else value
+      } else {
+        removeCreativeId(creativeId, value)
+      }
+
+      (key, correctNode)
     }
 
-    (key, correctNode)
+    if (tryCorrect.isFailure) logger.error("Failure occurs in Transform:", tryCorrect.failed.get)
+    val r = tryCorrect.map(implicit v => (v._1, v._2)).getOrElse((key,value))
+    r
   }
 
   override def close() = {
+    logger.info("Closing StateStore")
     creativeIdStore.close()
   }
 }

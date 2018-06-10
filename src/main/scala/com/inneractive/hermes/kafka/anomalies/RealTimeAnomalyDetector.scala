@@ -5,14 +5,11 @@ import com.inneractive.hermes.kafka.streams.HermesConfig
 import com.inneractive.hermes.kafka.streams.HermesConfig.getConfigs
 import com.inneractive.hermes.model.TimeSeriesEntry
 import grizzled.slf4j.Logging
-import java.util.Properties
 import org.apache.avro.generic.GenericRecord
 import org.apache.kafka.common.serialization.StringSerializer
 import org.apache.kafka.streams.KafkaStreams
-import org.apache.kafka.streams.kstream.KStream
-import org.apache.kafka.streams.kstream.KStreamBuilder
-import org.apache.kafka.streams.processor.Processor
-import org.apache.kafka.streams.processor.ProcessorSupplier
+import org.apache.kafka.streams.kstream.{KStream, KStreamBuilder}
+import org.apache.kafka.streams.processor.{Processor, ProcessorSupplier}
 import org.apache.kafka.streams.state.Stores
 
 
@@ -80,12 +77,6 @@ object RealTimeAnomalyDetector extends App with CliStarter with Logging {
 }
 
 class AnomalyDetectorSupplier extends ProcessorSupplier[String, TimeSeriesEntry] {
-  val egadsProps = {
-    val is = this.getClass.getResourceAsStream("/egads-config.ini")
-    val props = new Properties()
-    props.load(is)
-    props
-  }
 
   override def get(): Processor[String, TimeSeriesEntry] = new AnomalyDetectorProcessor(egadsProps)
 }

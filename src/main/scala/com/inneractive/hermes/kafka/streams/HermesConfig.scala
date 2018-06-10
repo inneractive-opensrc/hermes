@@ -1,21 +1,17 @@
 package com.inneractive.hermes.kafka.streams
 
-import com.inneractive.hermes.model.JoinFullEvent
-import com.inneractive.hermes.utils.GenericAvroSerde
-import com.inneractive.hermes.utils.SpecificAvroSerde
-import com.inneractive.hermes.utils.SpecificAvroSerializer
-import com.typesafe.config.ConfigFactory
-import io.confluent.kafka.schemaregistry.client.CachedSchemaRegistryClient
-import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig
-import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig
 import java.util
 import java.util.Properties
+
+import com.inneractive.hermes.model.JoinFullEvent
+import com.inneractive.hermes.utils.{GenericAvroSerde, SpecificAvroSerde, SpecificAvroSerializer}
+import com.typesafe.config.ConfigFactory
+import io.confluent.kafka.schemaregistry.client.CachedSchemaRegistryClient
+import io.confluent.kafka.serializers.{AbstractKafkaAvroSerDeConfig, KafkaAvroDeserializerConfig}
 import org.apache.avro.specific.SpecificRecord
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.clients.producer.ProducerConfig
-import org.apache.kafka.common.serialization.Serde
-import org.apache.kafka.common.serialization.Serdes
-import org.apache.kafka.common.serialization.StringSerializer
+import org.apache.kafka.common.serialization.{Serde, Serdes, StringSerializer}
 import org.apache.kafka.streams.StreamsConfig
 import pureconfig.error.ConfigReaderFailures
 import pureconfig.loadConfig
@@ -26,7 +22,7 @@ import pureconfig.loadConfig
   */
 case class EndpointURL(brokers : String, schema : String, zookeeper : String)
 case class Topics(input : String, output: String, aggregation : String)
-case class Streams(punctuate : Long, threshold : Double, apiendpointhost : String, apiendpointport : Int)
+case class Streams(punctuate : Long, threshold : Double, apiendpointhost : String, apiendpointport : Int, numthreads : String)
 case class HermesProducerConfig(ack : Int)
 case class KafkaConsumerConfig(readfrom : String, groupid : String,
   autocomit: String, autocomitinterval : String, sessiontimeout : String, maxpollrequest : String)
@@ -71,7 +67,8 @@ object HermesConfig {
     val config = getBaseConfig
     config.put("session.timeout.ms", c.consumerconf.sessiontimeout)
     config.put("max.poll.records", c.consumerconf.maxpollrequest)
-     config
+    config.put("num.stream.threads", c.streams.numthreads)
+    config
   }
 
   def getConsumerConfig(implicit c: HermesConfig): Properties = {
